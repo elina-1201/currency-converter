@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CurrencyConverter_Project.CurrencyConverterPage"
+             Title="Currency Converter"
+             xmlns:local="clr-namespace:CurrencyConverter_Project"
+             >
+	<!--Setting the background for the page-->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#20023E"
+                          Offset="0.0" />
+            <GradientStop Color="#40037C"
+                          Offset="0.4" />
+            <GradientStop Color="#510540"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid Padding="0,50,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <FlexLayout x:Name="CurrencyValuesFlex"
+                    Direction="Column"
+                    AlignItems="Start" Margin="70,0,0,0"
+                    JustifyContent="SpaceBetween" Grid.Column="0">
+            <Label x:Name="CurrencyLabel1" Text="BAM ⌵" FontSize="Large" TextColor="White" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCurrencyLabelTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+            
+            <!--Arrow lable for switching-->
+            <Label Text="⇵" FontSize="40" TextColor="White" Margin="0,0,0,10" x:Name="ArrowLabel">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnArrowLabelTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label x:Name="CurrencyLabel2" Text="EUR ⌵" FontSize="Large" TextColor="White" HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCurrencyLabelTapped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </FlexLayout>
+
+        <FlexLayout Direction="Column"
+                AlignItems="Start" Margin="40,0,0,0"
+                JustifyContent="SpaceBetween" Grid.Column="1">
+            <VerticalStackLayout>
+                <Entry x:Name="EntryCurrency1" TextColor="White" FontSize="Large" 
+                   WidthRequest="150" TextChanged="OnEntryTextChanged1" 
+                   HorizontalTextAlignment="Center" Margin="10,0"
+                   Focused="OnEntryFocused"  Unfocused="OnEntryUnfocused"
+                       ClearButtonVisibility="WhileEditing"/>
+                <BoxView
+                  x:Name="BottomBorder1"
+                  Color="White"  
+                  Margin="0,-10,0,0"                   
+                  HeightRequest="1"  
+                  HorizontalOptions="Fill" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Entry x:Name="EntryCurrency2" TextColor="White" FontSize="Large" 
+                   WidthRequest="150" TextChanged="OnEntryTextChanged2" 
+                   HorizontalTextAlignment="Center" Margin="10,0"
+                   Focused="OnEntryFocused" Unfocused="OnEntryUnfocused"
+                       ClearButtonVisibility="WhileEditing"/>
+                <BoxView
+                  x:Name="BottomBorder2"
+                  Color="White"  
+                  Margin="0,-10,0,0"                   
+                  HeightRequest="1"  
+                  HorizontalOptions="Fill" />
+            </VerticalStackLayout>
+        </FlexLayout>
+
+        <!--Numeric buttons-->
+        <Grid Grid.Row="3" Grid.ColumnSpan="2" Margin="0,50,0,0" RowSpacing="20" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Numeric buttons 1-9 -->
+            <Button Text="1"
+                    Grid.Row="0" Grid.Column="0"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+            <Button Text="2"
+                    Grid.Row="0" Grid.Column="1"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+            <Button Text="3"
+                    Grid.Row="0" Grid.Column="2"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+
+            <Button Text="4"
+                    Grid.Row="1" Grid.Column="0"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+            <Button Text="5"
+                    Grid.Row="1" Grid.Column="1"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+            <Button Text="6"
+                    Grid.Row="1" Grid.Column="2"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+
+            <Button Text="7"
+                    Grid.Row="2" Grid.Column="0"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+            <Button Text="8"
+                    Grid.Row="2" Grid.Column="1"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+            <Button Text="9"
+                    Grid.Row="2" Grid.Column="2"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+
+            <Button Text="."
+                    Grid.Row="3" Grid.Column="0"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="Cyan"
+                    Clicked="OnNumericButtonClicked" />
+            <Button Text="0"
+                    Grid.Row="3" Grid.Column="1"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="White"
+                    Clicked="OnNumericButtonClicked" />
+            <Button Text="⟵"
+                    Grid.Row="3" Grid.Column="2"
+                    FontSize="Large"
+                    BackgroundColor="Transparent" TextColor="Cyan"
+                    Clicked="OnEraseButtonClicked" />
+        </Grid>
+    </Grid>
+</ContentPage>

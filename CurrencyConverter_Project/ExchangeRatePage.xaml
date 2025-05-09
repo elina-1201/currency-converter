@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CurrencyConverter_Project.ExchangeRatePage"
+             Title="Exchange Rate"
+             xmlns:shapes="clr-namespace:Microsoft.Maui.Controls.Shapes;assembly=Microsoft.Maui.Controls"
+             >
+    <!--Setting the background for the page-->
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#20023E"
+                            Offset="0.0" />
+            <GradientStop Color="#40037C"
+                            Offset="0.4" />
+            <GradientStop Color="#510540"
+                            Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid Padding="0,50,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="CurrencyLabel" 
+                Text="SELECT ⌵" 
+                FontSize="Large" 
+                TextColor="White" 
+                HorizontalOptions="Center"
+                Grid.Row="0"
+                >
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnCurrencyLabelTapped"/>
+            </Label.GestureRecognizers>
+        </Label>
+
+        <CollectionView x:Name="ItemsListView"
+                        ItemsSource="{Binding itemList}" 
+                        HeightRequest="600"
+                        VerticalOptions="Fill"
+                        Grid.Row="1"
+                        Margin="10,30"
+                        >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalOptions="FillAndExpand" 
+                        ColumnSpacing="20"
+                        Margin="30, 10"
+                        >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <!--Column for the Image-->
+                            <ColumnDefinition Width="Auto" />
+                            <!--Column for the Exchange Rate-->
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <HorizontalStackLayout Grid.Row="0">
+                                <Image Source="{Binding Flag}"
+                                    WidthRequest="40"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   />
+                                <Label Text="{Binding CurrencyCountry}"
+                                       FontSize="Default"
+                                       VerticalOptions="Center"
+                                       TextColor="LightGrey"
+                                       HorizontalTextAlignment="Center"
+                                       Margin="15,0,0,0"
+                                       />
+                            </HorizontalStackLayout>
+
+
+                            <HorizontalStackLayout Grid.Row="1">
+                                <Label Text="1 "
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       />
+                                <Label Text="{Binding CurrencyName}"
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       />
+                                <Label Text=" = "
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       />
+                                <Label Text="{Binding CurrencyCost}"
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       Grid.Row="1" 
+                                        />
+                                <Label Text=" "
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       />
+                                <Label Text="{Binding MainCurrencyName}"
+                                       FontSize="Medium"
+                                       VerticalOptions="Center"
+                                       TextColor="White"
+                                       />
+                            </HorizontalStackLayout>
+                        </Grid>
+
+                        <Label Text="{Binding CurrencyRate}"
+                           FontSize="Large"
+                           VerticalOptions="Center"
+                           TextColor="White"
+                           HorizontalOptions="End"
+                           Grid.Column="1" />
+
+                        <shapes:Rectangle HorizontalOptions="FillAndExpand" HeightRequest="2"
+                                  Fill="White" Grid.Row="2" Margin="10,10, 20,0" Grid.ColumnSpan="2"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CurrencyConverter_Project.PopupPage"
+             BackgroundColor="Transparent"
+             Title="PopupPage"
+             >
+    <Grid VerticalOptions="EndAndExpand"
+          HeightRequest="600"
+          Margin="25"
+          >
+        <!-- Background gradient -->
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0,1">
+                <GradientStop Color="#510540"
+                          Offset="0.2" />
+                <GradientStop Color="#20023E"
+                          Offset="0.9" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout Orientation="Vertical" HorizontalOptions="Center" Grid.Row="0">
+            <Label Text="Choose Currency" 
+               FontSize="Medium" 
+               TextColor="White" 
+               HorizontalTextAlignment="Center"
+               Margin="10"
+               />
+            <!--Search-->
+            <HorizontalStackLayout VerticalOptions="Center" Margin="10, 15">
+                <Image Source="search_icon_white.png"
+                       WidthRequest="35"
+                       />
+                <VerticalStackLayout>
+                    <Entry x:Name="searchEntry"
+                       Placeholder="Currency, Country"
+                       FontSize="Medium"
+                       TextColor="White"
+                       WidthRequest="210"
+                       HorizontalTextAlignment="Center"
+                       TextChanged="Search"
+                       ClearButtonVisibility="WhileEditing"
+                       />
+                    <BoxView
+                      Color="White"  
+                      Margin="0,-10,0,0"                   
+                      HeightRequest="1"  
+                      HorizontalOptions="Fill" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </StackLayout>
+
+        <CollectionView x:Name="ItemsListView"
+                          ItemsSource="{Binding ListOfCurrencyItems}" 
+                          HeightRequest="400"
+                          VerticalOptions="Fill"
+                          Grid.Row="1"
+                          Margin="0,10"
+                          >
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalOptions="FillAndExpand" 
+                          ColumnSpacing="20"
+                          Margin="20, 5"
+                          >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <!-- Column for the Image -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Column for the Name label -->
+                            <ColumnDefinition Width="Auto" />
+                            <!-- Column for the Code label -->
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="{Binding Flag}"
+                               WidthRequest="40"
+                               Grid.Column="0" />
+
+                        <Label Text="{Binding Name}"
+                               FontSize="Medium"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               Grid.Column="1" />
+
+                        <Label Text="{Binding Code}"
+                               FontSize="Medium"
+                               VerticalOptions="Center"
+                               TextColor="White"
+                               HorizontalOptions="End"
+                               Grid.Column="2" />
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCurrencyItemTapped" />
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+        <Button Text="Cancel"  
+                BackgroundColor="Transparent" 
+                BorderColor="Cyan" 
+                BorderWidth="1"
+                WidthRequest="110"
+                Grid.Row="2" VerticalOptions="End"
+                Clicked="ClosePopup_Clicked"
+                Margin="0,0,0,15"
+                FontSize="17"
+                TextColor="White"
+                />
+    </Grid>
+</ContentPage>
