@@ -3,6 +3,11 @@
 
 A mobile application for currency conversion and real-time exchange rate preview.
 
+## Preview
+<div align="center">
+  <img src="./currency-converter-preview.gif" alt="App Preview" height="400">
+</div>
+
 ## Technical Implementation
 
 Developed in **C#** using **.NET MAUI (Multi-platform App UI)**.
